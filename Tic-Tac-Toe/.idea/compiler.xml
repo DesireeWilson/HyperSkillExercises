@@ -16,6 +16,8 @@
       <module name="Problems-From_string_to_a_number_test" target="11" />
       <module name="Problems-Good_rest_on_vacation_main" target="11" />
       <module name="Problems-Good_rest_on_vacation_test" target="11" />
+      <module name="Problems-Healthy_sleep_main" target="11" />
+      <module name="Problems-Healthy_sleep_test" target="11" />
       <module name="Problems-Initializing_an_array_of_characters_main" target="11" />
       <module name="Problems-Initializing_an_array_of_characters_test" target="11" />
       <module name="Problems-Initializing_an_array_of_longs_main" target="11" />
