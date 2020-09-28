@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Problems-Check_sudoku_main" target="11" />
+      <module name="Problems-Check_sudoku_test" target="11" />
+      <module name="Problems-Initializing_an_array_of_characters_main" target="11" />
+      <module name="Problems-Initializing_an_array_of_characters_test" target="11" />
+      <module name="Problems-Initializing_an_array_of_longs_main" target="11" />
+      <module name="Problems-Initializing_an_array_of_longs_test" target="11" />
+      <module name="Problems-Squirrels_and_nuts_main" target="11" />
+      <module name="Problems-Squirrels_and_nuts_test" target="11" />
+      <module name="Problems-Sum_array_elements_greater_than_a_value_main" target="11" />
+      <module name="Problems-Sum_array_elements_greater_than_a_value_test" target="11" />
+      <module name="Problems-Swap_the_columns_main" target="11" />
+      <module name="Problems-Swap_the_columns_test" target="11" />
+      <module name="Problems-The_index_of_the_first_max_in_an_array_main" target="11" />
+      <module name="Problems-The_index_of_the_first_max_in_an_array_test" target="11" />
+      <module name="Problems-The_maximum_product_of_adjacent_elements_main" target="11" />
+      <module name="Problems-The_maximum_product_of_adjacent_elements_test" target="11" />
+      <module name="Tic-Tac-Toe-task_main" target="11" />
+      <module name="Tic-Tac-Toe-task_test" target="11" />
+      <module name="util_main" target="11" />
+      <module name="util_test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
