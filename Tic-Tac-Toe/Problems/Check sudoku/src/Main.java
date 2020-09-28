@@ -11,6 +11,8 @@ public class Main {
         String output = "YES";
 
         createSudokuGrid(sudokuMatrix, scanner);
+
+
         if(n != 1){
             for (int rowIndex = 0; rowIndex < (n * n); rowIndex++) {
                 for (int num = 1; num <= (n * n); num++) {

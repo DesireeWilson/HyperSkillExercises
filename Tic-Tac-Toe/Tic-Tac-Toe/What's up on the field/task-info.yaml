@@ -321,6 +321,13 @@ files:
         }
     }
   learner_created: false
+- name: src/tictactoe/SYNTHsolution.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/48/stages/257/implement
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/48/stages/257/implement">JetBrains
+    Academy</a>
+  time: Sun, 27 Sep 2020 19:16:16 UTC
+record: 3
