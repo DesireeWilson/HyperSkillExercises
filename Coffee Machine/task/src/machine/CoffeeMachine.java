@@ -1,15 +1,16 @@
 package machine;
 
+import java.util.Scanner;
+
 public class CoffeeMachine {
     public static void main(String[] args) {
-        String actionsPrompt =
-                "Starting to make a coffee\n" +
-                "Grinding coffee beans\n" +
-                "Boiling water\n" +
-                "Mixing boiled water with crushed coffee beans\n" +
-                "Pouring coffee into the cup\n" +
-                "Pouring some milk into the cup\n" +
-                "Coffee is ready!";
-        System.out.print(actionsPrompt);
+        Scanner scanner = new Scanner(System.in);
+        CoffeeMachineModel model = new CoffeeMachineModel();
+        CoffeeMachineView view = new CoffeeMachineView();
+        CoffeeMachineController controller = new CoffeeMachineController(model, view);
+
+        //controller.calculateIngredients(scanner); // previous stage
+        controller.calculateCupsOfCoffeeDesired(scanner);
+
     }
 }
