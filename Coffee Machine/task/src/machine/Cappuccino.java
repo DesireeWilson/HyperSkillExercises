@@ -1,6 +1,6 @@
 package machine;
 
-public class Cappuccino {
+public class Cappuccino extends Beverage{
     //fields:
     private int waterNeeded = 200;
     private int milkNeeded = 100;

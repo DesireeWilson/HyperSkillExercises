@@ -19,17 +19,21 @@ public class CoffeeMachineView {
 
     public void printCoffeeMachineIngredientAmount(int waterAmount, int milkAmount, int beansAmount, int cupsAmount, int moneyAmount){
         String output = "The coffee machine has:\n";
-        output += String.format("%s of water", waterAmount);
-        output += String.format("%s of milk", milkAmount);
-        output += String.format("%s of beans", beansAmount);
-        output += String.format("%s of disposable cups", cupsAmount);
-        output += String.format("%s of money", moneyAmount);
+        output += String.format("%s of water\n", waterAmount);
+        output += String.format("%s of milk\n", milkAmount);
+        output += String.format("%s of coffee beans\n", beansAmount);
+        output += String.format("%s of disposable cups\n", cupsAmount);
+        output += String.format("%s of money\n", moneyAmount);
 
         System.out.println(output);
     }
 
     public void printActionPrompt(){
         System.out.print("Write action (buy, fill, take): ");
+    }
+
+    public void printBeverageMenuPrompt(){
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino");
     }
 
 
@@ -61,7 +65,7 @@ public class CoffeeMachineView {
         System.out.print(result);
     }
 
-    public void printAmountOfIngredientPrompt(String measurement, String ingredient){
+    public void printAmountOfIngredientInMachinePrompt(String measurement, String ingredient){
         System.out.printf("Write how many %s of %s the coffee machine has: ", measurement, ingredient);
     }
 
@@ -73,8 +77,8 @@ public class CoffeeMachineView {
         System.out.println(output);
     }
 
-    public void printAmountOfIngredientInMachinePrompt(String ingredient, String ingredientMeasurement){
-        System.out.printf("Write how many %s of %s the coffee machine has: ", ingredientMeasurement, ingredient);
+    public void printAmountOfIngredientsToAddPrompt(String ingredient, String ingredientMeasurement){
+        System.out.printf("Write how many %s of %s do you want to add: ", ingredientMeasurement, ingredient);
     }
 
 }

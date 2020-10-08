@@ -5,37 +5,55 @@ import java.util.Scanner;
 public class CoffeeMachineModel {
     //fields:
     private int numberOfCupsOfCoffee;
-    private int amountOfWaterNeeded;
-    private int amountOfMilkNeeded;
-    private int amountOfBeansNeeded;
     private int amountOfWaterInMachine;
     private int amountOfMilkInMachine;
     private int amountOfBeansInMachine;
-    private final int WATER_ML = 200;
-    private final int MILK_ML = 50;
-    private final int BEANS_G = 15;
+    private int amountOfCupsInMachine;
+    private int amountOfMoneyInMachine;
+    private Beverage beverage;
 
 
     //methods:
-    public CoffeeMachineModel(){}
+    public CoffeeMachineModel(int water, int milk, int beans, int cups, int money){
+        this.amountOfWaterInMachine = water;
+        this.amountOfMilkInMachine = milk;
+        this.amountOfBeansInMachine = beans;
+        this.amountOfCupsInMachine = cups;
+        this.amountOfMoneyInMachine = money;
+    }
 
-    public int calculateAmountOfWaterNeeded(){
-        amountOfWaterNeeded = numberOfCupsOfCoffee * WATER_ML;
+    public void updateCoffeeMachineIngredientAmounts(int water, int milk, int beans, int cups, int money){
+        this.amountOfWaterInMachine -= water;
+        this.amountOfMilkInMachine -= milk;
+        this.amountOfBeansInMachine -= beans;
+        this.amountOfCupsInMachine -= cups;
+        this.amountOfMoneyInMachine += money;
+    }
+
+    public int calculateAmountOfWaterNeeded(int numberOfCupsOfCoffee, int waterNeeded){
+        int amountOfWaterNeeded;
+        amountOfWaterNeeded = numberOfCupsOfCoffee * waterNeeded;
         return amountOfWaterNeeded;
     }
 
-    public int calculateAmountOfMilkNeeded(){
-        amountOfMilkNeeded = numberOfCupsOfCoffee * MILK_ML;
+    public int calculateAmountOfMilkNeeded(int numberOfCupsOfCoffee, int milkNeeded){
+        int amountOfMilkNeeded;
+        amountOfMilkNeeded = numberOfCupsOfCoffee * milkNeeded;
         return amountOfMilkNeeded;
     }
 
-    public int calculateAmountOfBeans(){
-        amountOfBeansNeeded = numberOfCupsOfCoffee * BEANS_G;
+    public int calculateAmountOfBeans(int numberOfCupsOfCoffee, int beansNeeded){
+        int amountOfBeansNeeded;
+        amountOfBeansNeeded = numberOfCupsOfCoffee * beansNeeded;
         return amountOfBeansNeeded;
     }
 
     public void setNumberOfCupsOfCoffee(Scanner scanner){
         numberOfCupsOfCoffee = scanner.nextInt();
+    }
+
+    public void setNumberOfCupsOfCoffee(int amount){
+        numberOfCupsOfCoffee = amount;
     }
 
     public void setAmountOfWaterInMachine(Scanner scanner){
@@ -50,8 +68,12 @@ public class CoffeeMachineModel {
         amountOfBeansInMachine = scanner.nextInt();
     }
 
-    public void setNumberOfCupsOfCoffee(int amount){
-        numberOfCupsOfCoffee = amount;
+    public void setAmountOfCupsInMachine(Scanner scanner){
+        amountOfCupsInMachine = scanner.nextInt();
+    }
+
+    public void setAmountOfMoneyInMachine(Scanner scanner){
+        amountOfMoneyInMachine = scanner.nextInt();
     }
 
     public void setAmountOfWaterInMachine(int amount){
@@ -66,17 +88,12 @@ public class CoffeeMachineModel {
         amountOfBeansInMachine = amount;
     }
 
-
-    public int getAmountOfWaterNeeded() {
-        return amountOfWaterNeeded;
+    public void setAmountOfCupsInMachine(int amount){
+        amountOfCupsInMachine = amount;
     }
 
-    public int getAmountOfMilkNeeded() {
-        return amountOfMilkNeeded;
-    }
-
-    public int getAmountOfBeansNeeded() {
-        return amountOfBeansNeeded;
+    public void setAmountOfMoneyInMachine(int amount){
+        amountOfMoneyInMachine = amount;
     }
 
     public int getAmountOfWaterInMachine(){
@@ -95,36 +112,43 @@ public class CoffeeMachineModel {
         return numberOfCupsOfCoffee;
     }
 
-    public int calculateNumberOfCupsOfCoffeePossible(){
+    public int getAmountOfCupsInMachine(){
+        return amountOfCupsInMachine;
+    }
+
+    public int getAmountOfMoneyInMachine() {
+        return amountOfMoneyInMachine;
+    }
+
+    public int calculateNumberOfCupsOfCoffeePossible(int waterNeeded, int milkNeeded, int beansNeeded){
         int count = 0;
         int waterRemaining = getAmountOfWaterInMachine();
         int milkRemaining = getAmountOfMilkInMachine();
         int beansRemaining = getAmountOfBeansInMachine();
 
-
         while(true){
-            if((waterRemaining / WATER_ML == 0) || (milkRemaining / MILK_ML == 0) ||
-                    (beansRemaining / BEANS_G == 0)){
+            if((waterRemaining / waterNeeded == 0) || (milkRemaining / milkNeeded == 0) ||
+                    (beansRemaining / beansNeeded == 0)){
                 break;
             }
             count++;
-            waterRemaining -= WATER_ML;
-            milkRemaining -= MILK_ML;
-            beansRemaining -= BEANS_G;
+            waterRemaining -= waterNeeded;
+            milkRemaining -= milkNeeded;
+            beansRemaining -= beansNeeded;
         }
         return count;
     }
 
-    public boolean canMakeCoffee(){
-        return (calculateNumberOfCupsOfCoffeePossible() >= getNumberOfCupsOfCoffee());
+    public boolean canMakeCoffee(int waterNeeded, int milkNeeded, int beansNeeded){
+        return (calculateNumberOfCupsOfCoffeePossible(waterNeeded, milkNeeded, beansNeeded) >= getNumberOfCupsOfCoffee());
     }
 
-    public boolean canMakeExtraCoffee(){
-        return (calculateNumberOfCupsOfCoffeePossible() > getNumberOfCupsOfCoffee());
+    public boolean canMakeExtraCoffee(int waterNeeded, int milkNeeded, int beansNeeded){
+        return (calculateNumberOfCupsOfCoffeePossible(waterNeeded, milkNeeded, beansNeeded) > getNumberOfCupsOfCoffee());
     }
 
-    public int calculateNumberOfExtraCupsOfCoffee(){
-        return calculateNumberOfCupsOfCoffeePossible() - getNumberOfCupsOfCoffee();
+    public int calculateNumberOfExtraCupsOfCoffee(int waterNeeded, int milkNeeded, int beansNeeded){
+        return calculateNumberOfCupsOfCoffeePossible(waterNeeded, milkNeeded, beansNeeded) - getNumberOfCupsOfCoffee();
     }
 
     public void addIngredients(String ingredient, int amount){
@@ -134,6 +158,8 @@ public class CoffeeMachineModel {
             setAmountOfMilkInMachine(getAmountOfMilkInMachine() + amount);
         }else if(ingredient.equalsIgnoreCase("beans")){
             setAmountOfBeansInMachine(getAmountOfBeansInMachine() + amount);
+        }else if(ingredient.equalsIgnoreCase("cups")){
+            setAmountOfCupsInMachine(getAmountOfCupsInMachine() + amount);
         }else{
             System.out.println("invalid entry");
         }
