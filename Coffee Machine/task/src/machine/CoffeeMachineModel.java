@@ -50,6 +50,23 @@ public class CoffeeMachineModel {
         amountOfBeansInMachine = scanner.nextInt();
     }
 
+    public void setNumberOfCupsOfCoffee(int amount){
+        numberOfCupsOfCoffee = amount;
+    }
+
+    public void setAmountOfWaterInMachine(int amount){
+        amountOfWaterInMachine = amount;
+    }
+
+    public void setAmountOfMilkInMachine(int amount){
+        amountOfMilkInMachine = amount;
+    }
+
+    public void setAmountOfBeansInMachine(int amount){
+        amountOfBeansInMachine = amount;
+    }
+
+
     public int getAmountOfWaterNeeded() {
         return amountOfWaterNeeded;
     }
@@ -108,5 +125,17 @@ public class CoffeeMachineModel {
 
     public int calculateNumberOfExtraCupsOfCoffee(){
         return calculateNumberOfCupsOfCoffeePossible() - getNumberOfCupsOfCoffee();
+    }
+
+    public void addIngredients(String ingredient, int amount){
+        if(ingredient.equalsIgnoreCase("water")){
+            setAmountOfWaterInMachine(getAmountOfWaterInMachine() + amount);
+        }else if(ingredient.equalsIgnoreCase("milk")){
+            setAmountOfMilkInMachine(getAmountOfMilkInMachine() + amount);
+        }else if(ingredient.equalsIgnoreCase("beans")){
+            setAmountOfBeansInMachine(getAmountOfBeansInMachine() + amount);
+        }else{
+            System.out.println("invalid entry");
+        }
     }
 }

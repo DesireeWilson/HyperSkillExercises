@@ -1,6 +1,8 @@
 package machine;
 
 
+import java.util.Scanner;
+
 public class CoffeeMachineView {
     //fields:
 
@@ -9,22 +11,39 @@ public class CoffeeMachineView {
     //methods:
     public CoffeeMachineView(){}
 
-    public void printMainMenu(){
-        String mainMenuPrompt = "";
-        System.out.print(mainMenuPrompt);
+//    public void printMainMenu(){
+//        printAmountOfCoffeePrompt();
+//        String mainMenuPrompt = "Write action (buy, fill, take)";
+//        System.out.print(mainMenuPrompt);
+//    }
+
+    public void printCoffeeMachineIngredientAmount(int waterAmount, int milkAmount, int beansAmount, int cupsAmount, int moneyAmount){
+        String output = "The coffee machine has:\n";
+        output += String.format("%s of water", waterAmount);
+        output += String.format("%s of milk", milkAmount);
+        output += String.format("%s of beans", beansAmount);
+        output += String.format("%s of disposable cups", cupsAmount);
+        output += String.format("%s of money", moneyAmount);
+
+        System.out.println(output);
     }
 
     public void printActionPrompt(){
-        String actionsPrompt =
-                "Starting to make a coffee\n" +
-                "Grinding coffee beans\n" +
-                "Boiling water\n" +
-                "Mixing boiled water with crushed coffee beans\n" +
-                "Pouring coffee into the cup\n" +
-                "Pouring some milk into the cup\n" +
-                "Coffee is ready!";
-        System.out.println(actionsPrompt);
+        System.out.print("Write action (buy, fill, take): ");
     }
+
+
+//    public void printActionPrompt(){
+//        String actionsPrompt =
+//                "Starting to make a coffee\n" +
+//                "Grinding coffee beans\n" +
+//                "Boiling water\n" +
+//                "Mixing boiled water with crushed coffee beans\n" +
+//                "Pouring coffee into the cup\n" +
+//                "Pouring some milk into the cup\n" +
+//                "Coffee is ready!";
+//        System.out.println(actionsPrompt);
+//    }
 
     public void printAmountOfCoffeePrompt(){
         System.out.print("Write how many cups of coffee will you need: ");
