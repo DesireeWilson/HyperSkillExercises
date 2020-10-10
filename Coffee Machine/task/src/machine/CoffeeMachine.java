@@ -13,6 +13,11 @@ public class CoffeeMachine {
         //controller.calculateCupsOfCoffeeDesired(scanner);
 
         controller.mainMenuLogic(scanner);
+//        Espresso espresso1 = new Espresso();
+//        Beverage espresso2 = new Espresso();
+//        System.out.println(model.canMakeCoffee(espresso2));
+//        System.out.println(espresso1.getBeansNeeded());
+//        System.out.println(espresso2.getBeansNeeded());
 
     }
 }

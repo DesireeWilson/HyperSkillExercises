@@ -18,23 +18,14 @@ public class CoffeeMachineController {
     }
 
     public void mainMenuLogic(Scanner scanner){
-        int water = model.getAmountOfWaterInMachine();
-        int milk = model.getAmountOfMilkInMachine();
-        int beans = model.getAmountOfBeansInMachine();
-        int cups = model.getAmountOfCupsInMachine();
-        int money = model.getAmountOfMoneyInMachine();
-        view.printCoffeeMachineIngredientAmount(water, milk, beans, cups, money);
-
-        view.printActionPrompt();
-        String action = scanner.nextLine();
-        methodSelection(action, scanner);
-
-        water = model.getAmountOfWaterInMachine();
-        milk = model.getAmountOfMilkInMachine();
-        beans = model.getAmountOfBeansInMachine();
-        cups = model.getAmountOfCupsInMachine();
-        money = model.getAmountOfMoneyInMachine();
-        view.printCoffeeMachineIngredientAmount(water, milk, beans, cups, money);
+        while(true){
+            view.printActionPrompt();
+            String action = scanner.nextLine();
+            if(action.equalsIgnoreCase("exit")){
+                break;
+            }
+            methodSelection(action, scanner);
+        }
     }
 
     public void methodSelection(String arg, Scanner scanner){
@@ -44,62 +35,72 @@ public class CoffeeMachineController {
             fillSomething(scanner);
         }else if(arg.equalsIgnoreCase("take")){
             takeSomething();
-        }else{
+        }else if(arg.equalsIgnoreCase("remaining")){
+            int water = model.getAmountOfWaterInMachine();
+            int milk = model.getAmountOfMilkInMachine();
+            int beans = model.getAmountOfBeansInMachine();
+            int cups = model.getAmountOfCupsInMachine();
+            int money = model.getAmountOfMoneyInMachine();
+            view.printCoffeeMachineIngredientAmount(water, milk, beans, cups, money);
+        }else if(arg.equalsIgnoreCase("back")){
+            //goes back to main menu
+            System.out.println("Returning to main menu.....");
+        }
+        else{
             //print "invalid command"
+            System.out.println("Invalid command. Please type 'buy', 'fill', 'take', 'remaining', or 'exit'.");
         }
     }
 
     public void buySomething(Scanner scanner){
         //call 'what do you want to buy' prompt
+        boolean enoughResources;
+        String ingredient = "";
+        model.setNumberOfCupsOfCoffee(1);
+
         view.printBeverageMenuPrompt();
-        int selection = scanner.nextInt();
-        if(selection == 1){
-            //create expresso and update coffee machine
-            Espresso espresso = new Espresso();
-            model.updateCoffeeMachineIngredientAmounts(espresso.getWaterNeeded()
-                    ,espresso.getMilkNeeded()
-                    ,espresso.getBeansNeeded()
-                    ,1
-                    ,espresso.getCost());
-        }else if(selection == 2){
-            //create latte and update coffee machine
-            Latte latte = new Latte();
-            model.updateCoffeeMachineIngredientAmounts(latte.getWaterNeeded()
-                    ,latte.getMilkNeeded()
-                    ,latte.getBeansNeeded()
-                    ,1
-                    ,latte.getCost());
-        }else if(selection == 3){
-            //create cappuccino and update coffee machine
-            Cappuccino cappuccino = new Cappuccino();
-            model.updateCoffeeMachineIngredientAmounts(cappuccino.getWaterNeeded()
-                    ,cappuccino.getMilkNeeded()
-                    ,cappuccino.getBeansNeeded()
-                    ,1
-                    ,cappuccino.getCost());
+        String selection = scanner.nextLine();
+        if(selection.equalsIgnoreCase("back")){
+            System.out.println("Returning to main menu...");
         }else{
-            //print "invalid command"
-            System.out.println("Invalid command. Please type '1', '2', or '3'.");
+            int selectionNum = Integer.valueOf(selection);
+            if(selectionNum == 1){
+                //create espresso and update coffee machine
+                Beverage espresso = new Espresso();
+                makeBeverage(espresso);
+            }else if(selectionNum == 2){
+                //create latte and update coffee machine
+                Latte latte = new Latte();
+                makeBeverage(latte);
+            }else if(selectionNum == 3){
+                //create cappuccino and update coffee machine
+                Cappuccino cappuccino = new Cappuccino();
+                makeBeverage(cappuccino);
+            }else{
+                //print "invalid command"
+                System.out.println("Invalid command. Please type '1', '2', '3', or 'back'.");
+            }
         }
     }
 
     public void fillSomething(Scanner scanner){
         //call "fillIngredients" prompt
         view.printAmountOfIngredientsToAddPrompt("water", "ml");
-        int waterAmount = scanner.nextInt();
+        int waterAmount = Integer.valueOf(scanner.nextLine());
         //call "fillIngredients" prompt
         view.printAmountOfIngredientsToAddPrompt("milk", "ml");
-        int milkAmount = scanner.nextInt();
+        int milkAmount = Integer.valueOf(scanner.nextLine());
         //call "fillIngredients" prompt
         view.printAmountOfIngredientsToAddPrompt("coffee beans", "grams");
-        int beansAmount = scanner.nextInt();
+        int beansAmount = Integer.valueOf(scanner.nextLine());
         //call fillIngredients prompt
         view.printAmountOfIngredientsToAddPrompt("coffee", "disposable cups");
-        int numOfCups = scanner.nextInt();
+        int numOfCups = Integer.valueOf(scanner.nextLine());
         model.addIngredients("water", waterAmount);
         model.addIngredients("milk", milkAmount);
         model.addIngredients("beans", beansAmount);
         model.addIngredients("cups", numOfCups);
+        System.out.println();
     }
 
     public void takeSomething(){
@@ -137,5 +138,18 @@ public class CoffeeMachineController {
         boolean canMakeExtra = model.canMakeExtraCoffee(200, 50, 15);
 
         view.printAmountOfCupsPossiblePrompt(canMakeCoffee, canMakeExtra, numCupsPossible, numCupsExtra);
+    }
+
+    public void makeBeverage(Beverage beverage){
+        String ingredient = "";
+        boolean enoughResources;
+        if(model.canMakeCoffee(beverage)){
+            model.updateCoffeeMachineIngredientAmounts(beverage);
+            enoughResources = true;
+        }else{
+            ingredient = model.ingredientsNeeded(beverage);
+            enoughResources = false;
+        }
+        view.printEnoughResources(enoughResources, ingredient);
     }
 }

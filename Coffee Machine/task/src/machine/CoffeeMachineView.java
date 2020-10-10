@@ -29,11 +29,17 @@ public class CoffeeMachineView {
     }
 
     public void printActionPrompt(){
-        System.out.print("Write action (buy, fill, take): ");
+        System.out.print("Write action (buy, fill, take, remaining, exit): ");
     }
 
     public void printBeverageMenuPrompt(){
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino");
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu");
+    }
+
+    public void printEnoughResources(Boolean enoughResources, String ingredient){
+        String output = (enoughResources) ? "I have enough resources, making you a coffee!"
+                : String.format("Sorry, not enough %s!", ingredient);
+        System.out.println(output);
     }
 
 

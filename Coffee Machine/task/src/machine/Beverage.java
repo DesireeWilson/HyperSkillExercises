@@ -2,16 +2,13 @@ package machine;
 
 public abstract class Beverage {
     //fields:
-    private int waterNeeded;
-    private int milkNeeded;
-    private int beansNeeded;
-    private int cost;
 
 
     //methods:
-    public int getWaterNeeded;
-    public int getMilkNeeded;
-    public int getBeansNeeded;
-    public int getCost;
+    public abstract int getWaterNeeded();
+    public abstract int getMilkNeeded();
+    public abstract int getBeansNeeded();
+    public abstract int getCost();
+    public abstract boolean isMilkIncluded();
 
 }
