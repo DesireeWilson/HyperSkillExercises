@@ -16,7 +16,18 @@ public class Controller {
 
     public void uiLogic(Scanner scanner){
         int count = 0;
-        view.secretCodePrompt();
+        while(true) {
+            view.numberOfDigitsPrompt();
+            int numOfDigits = scanner.nextInt();
+            if(model.checkNumOfDigits(numOfDigits)){
+                view.startGameMessage();
+                model.generateSecretCode(numOfDigits);
+                break;
+            }
+            view.numberofDigitsErrorMessage();
+        }
+
+        //view.secretCodePrompt();
         while(true){
             count++;
             view.turnPrompt(count);

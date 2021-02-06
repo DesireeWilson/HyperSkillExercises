@@ -7,6 +7,17 @@ public class View {
     //methods:
     public View(){}
 
+    public void numberOfDigitsPrompt(){
+        System.out.println("Please, enter the secret code's length: ");
+    }
+
+    public void startGameMessage() {
+        System.out.println("Okay, let's start a game!");
+    }
+
+    public void numberofDigitsErrorMessage() {
+        System.out.println("Error: The length must be between 0 and 10.");
+    }
     public void secretCodePrompt(){
         System.out.println("The secret code is prepared: ****.");
     }

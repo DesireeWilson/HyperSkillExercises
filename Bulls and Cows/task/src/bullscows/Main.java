@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Model model = new Model(9306);
-        //View view = new View();
-        //Controller controller = new Controller(model, view);
+        Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model, view);
 
-        int numOfDigits = scanner.nextInt();
-        model.generateSecretCode(numOfDigits);
+        //int numOfDigits = scanner.nextInt();
+
         //controller.uiLogic(scanner);
 
 
