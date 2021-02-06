@@ -54,7 +54,7 @@ public class Model {
             //int randomNumber = 0;
             long pseudoRandomNumber; //creating random number
 
-            //while(randomNumberReversed.length() != numOfDigits){
+            while(randomNumberReversed.length() != numOfDigits){
                 pseudoRandomNumber = System.nanoTime(); //creating random number
                 //turn random number into a string
                 randomString = new StringBuilder(String.valueOf(pseudoRandomNumber));
@@ -78,7 +78,7 @@ public class Model {
                         randomNumberReversed.append(theDigit);
                     }
                 }
-            //}
+            }
             System.out.println("The random secret number is " + randomNumberReversed.toString());
         }else{
             System.out.println("Error: can't generate a " +
