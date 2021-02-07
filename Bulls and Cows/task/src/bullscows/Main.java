@@ -6,12 +6,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Model model = new Model();
+        //Model model = new Model(1234);
         View view = new View();
         Controller controller = new Controller(model, view);
 
         //int numOfDigits = scanner.nextInt();
 
-        //controller.uiLogic(scanner);
+        controller.uiLogic(scanner);
 
 
         //controller.graderLogic(scanner);

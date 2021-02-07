@@ -1,6 +1,5 @@
 package bullscows;
 
-import java.util.Random;
 
 public class Model {
     //fields:
@@ -8,6 +7,10 @@ public class Model {
 
     //methods:
     public Model() {}
+
+    public Model(long secretCode){
+        this.secretCode = secretCode;
+    }
 
     public void generateSecretCode(int numOfDigits){
         //local variables:
@@ -28,19 +31,19 @@ public class Model {
                 //if the last digit in randomString is 0, skip digit
                 if(randomNumberReversed.length() == 0 & theDigit == '0'){
                     continue;
-                //if digit is already present in randomNumberReversed, skip digit
+                    //if digit is already present in randomNumberReversed, skip digit
                 }else if(randomNumberReversed.indexOf(String.valueOf(theDigit)) != -1){
                     continue;
-                //if the number of digits in randomNumberReversed  equals numOfDigits, break for-loop
+                    //if the number of digits in randomNumberReversed  equals numOfDigits, break for-loop
                 }else if(randomNumberReversed.length() == numOfDigits){
                     break;
-                //else, add digit to randomNumberReversed
+                    //else, add digit to randomNumberReversed
                 }else{
                     randomNumberReversed.append(theDigit);
                 }
             }
         }
-        this.secretCode = Long.valueOf(randomNumberReversed)
+        this.secretCode = Long.valueOf(String.valueOf(randomNumberReversed));
     }
 
     public boolean checkNumOfDigits(int numOfDigits){
@@ -51,13 +54,12 @@ public class Model {
         return secretCode;
     }
 
-    public int numOfBulls(int usersGuess){
+    public int numOfBulls(String usersGuess){
         int count = 0;
         int indexCount = 0;
         String theCodeString = String.valueOf(secretCode);
-        String userGuessString = String.valueOf(usersGuess);
         for (char digit : theCodeString.toCharArray()) {
-            if(digit == userGuessString.toCharArray()[indexCount]){
+            if(digit == usersGuess.toCharArray()[indexCount]){
                 count++;
             }
             indexCount++;
@@ -65,12 +67,11 @@ public class Model {
         return count;
     }
 
-    public int numOfCows(int usersGuess){
+    public int numOfCows(String usersGuess){
         int count = 0;
         int indexCount = 0;
         String theCodeString = String.valueOf(secretCode);
-        String userGuessString = String.valueOf(usersGuess);
-        for (char digit : userGuessString.toCharArray()) {
+        for (char digit : usersGuess.toCharArray()) {
             if(theCodeString.contains(String.valueOf(digit))){
                 if(theCodeString.toCharArray()[indexCount] != digit){
                     count++;

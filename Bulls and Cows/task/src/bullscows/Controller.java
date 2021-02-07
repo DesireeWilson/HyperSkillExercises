@@ -6,10 +6,11 @@ public class Controller {
     //fields:
     private Model model;
     private View view;
+    private int numOfDigits;
 
 
     //methods:
-    public Controller(Model model, View view){
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
@@ -18,42 +19,42 @@ public class Controller {
         int count = 0;
         while(true) {
             view.numberOfDigitsPrompt();
-            int numOfDigits = scanner.nextInt();
+            numOfDigits = scanner.nextInt();
             if(model.checkNumOfDigits(numOfDigits)){
                 view.startGameMessage();
                 model.generateSecretCode(numOfDigits);
                 break;
             }
-            view.numberofDigitsErrorMessage();
+            view.numberofDigitsErrorMessage(numOfDigits);
         }
 
         //view.secretCodePrompt();
         while(true){
             count++;
             view.turnPrompt(count);
-            int usersGuess = scanner.nextInt();
-            int numOfBulls = model.numOfBulls(usersGuess);
-            int numOfCows = model.numOfCows(usersGuess);
-            if(numOfBulls == 4){
-                view.gradePrompt(numOfBulls, numOfCows);
+            String guess = scanner.next();
+            int numOfBulls = model.numOfBulls(guess);
+            int numOfCows = model.numOfCows(guess);
+            if(numOfBulls == numOfDigits){
+                view.gradePrompt(numOfBulls, numOfCows, numOfDigits);
                 view.congratsPrompt(model.getSecretCode());
                 break;
             }else{
-                view.gradePrompt(numOfBulls, numOfCows);
+                view.gradePrompt(numOfBulls, numOfCows, numOfDigits);
             }
         }
     }
 
     public void graderLogic(Scanner scanner){
-        int usersGuess = scanner.nextInt();
+        String usersGuess = scanner.nextLine();
         int numOfBulls = model.numOfBulls(usersGuess);
         int numOfCows = model.numOfCows(usersGuess);
-        if(numOfBulls == 4){
-            view.gradePrompt(numOfBulls, numOfCows);
+        if(numOfBulls == numOfDigits){
+            view.gradePrompt(numOfBulls, numOfCows, numOfDigits);
             view.congratsPrompt(model.getSecretCode());
         }else{
-            view.gradePrompt(numOfBulls, numOfCows);
-            System.out.printf("The secret code is %d.", model.getSecretCode());
+            view.gradePrompt(numOfBulls, numOfCows, numOfDigits);
+            System.out.printf("The secret code is %d.\n", model.getSecretCode());
         }
     }
 
